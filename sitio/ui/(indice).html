@@ -1,0 +1,955 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
+<head>
+<script> console.log("headerIndex Inicia"); </script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApwxfWlBVmuJbGyfiiI3TGE546-Kf4Yv8&callback=initMap"
+    async defer></script>-->
+	<style>
+		table {
+			width: 100%;
+			padding: 0px;
+			border-style: solid;
+			line-height: 15px;
+			text-align: center;
+			margin-bottom: 10px;
+			border: 1px #fff solid;
+			-webkit-border-vertical-spacing: 0px;
+			-webkit-border-horizontal-spacing: 0px;
+			box-shadow: 0px 0px 8px #d6d6d6;
+			border-collapse: collapse;
+			background: blue;
+		}
+
+		th {
+			font-weight: normal;
+			font-size: 12px;
+			padding: 8px 0 8px 0;
+			color: #fff;
+			background-color: #b6b6b6;
+			border-left: #ddd 1px inset;
+		}
+
+		th:first-child {
+			border-left: none;
+		}
+
+		tbody tr {
+			background-color: #f4f4f4;
+		}
+
+		tbody tr:nth-child(even) {
+			background-color: #eaeaea;
+		}
+
+		tbody tr:hover {
+			background-color: #e2e2e2;
+		}
+
+		td {
+			font-weight: lighter;
+			line-height: 20px;
+			color: #4e4e4e;
+			padding: 8px 0px 8px 0px;
+			border-left: #ddd 1px inset;
+			border-top: #ddd 1px inset;
+		}
+
+		tbody tr:first-child {
+			padding-top: 8px;
+		}
+
+		tr:last-child td {
+			border-bottom: none;
+		}
+
+		tbody tr td:first-child {
+			border-left: none;
+		}
+
+		tbody tr:first-child td {
+			border-top: none;
+		}
+
+		table.orange th {
+			background-color: #f7910c;
+		}
+
+		table.blue th {
+			background-color: #0061a0;
+		}
+
+		table.green th {
+			background-color: #38bd2a;
+		}
+
+		table.red th {
+			background-color: #f94141;
+		}
+
+		table.custom th {
+			background-color: #9e7238;
+		}
+
+		.table-border {
+			width: 100%;
+			height: auto;
+			background: blue;
+		}
+
+	</style>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8 spanish" />
+
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+
+    <!-- Mobile Specific Metas
+    +++++++++++++++++++++++++++ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--[if IE ]><meta http-equiv="X-UA-Compatible" content="IE=Edge"><![endif]-->
+    <link rel="shortcut icon" href="https://resnom.cicese.mx/sitio/ui/img/favico.ico">
+
+    <link rel="apple-touch-icon" href="https://resnom.cicese.mx/sitio/ui/img/apple_icons_57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://resnom.cicese.mx/sitio/ui/img/apple_icons_72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://resnom.cicese.mx/sitio/ui/img/apple_icons_114x114.png">
+
+<title>RESNOM - CICESE</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,400italic,600italic,700italic' rel='preload' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="https://resnom.cicese.mx/sitio/ui/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://resnom.cicese.mx/sitio/ui/css/bootstrap-responsive.css">
+    <link rel="stylesheet" type="text/css" href="https://resnom.cicese.mx/sitio/ui/css/plugins.css">
+    <link rel="stylesheet" type="text/css" href="https://resnom.cicese.mx/sitio/ui/css/theme.css">
+	<link rel="stylesheet" type="text/css" href="https://resnom.cicese.mx/sitio/ui/css/site.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://resnom.cicese.mx/sitio/ui/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="https://resnom.cicese.mx/sitio/ui/css/theme_settings.css">
+    <link rel="stylesheet" type="text/css" href="https://resnom.cicese.mx/sitio/ui/css/rs-settings.css">
+	<link rel="stylesheet" type="text/css" href="https://resnom.cicese.mx/sitio/ui/css/color_theme.css" id="theme_color">
+<link rel="stylesheet" type="text/css" href="https://resnom.cicese.mx/sitio/ui/css/L.Control.MousePosition.css">
+<link rel="stylesheet" type="text/css" href="https://resnom.cicese.mx/sitio/ui/css/leaflet.css">
+<link rel="stylesheet" type="text/css" href="https://resnom.cicese.mx/sitio/ui/css/leaflet-areaselect.css">
+    <!--[if IE 8 ]><script>
+        var e = ("article,aside,figcaption,figure,footer,header,hgroup,nav,section,time").split(',');
+        for (var i = 0; i < e.length; i++) {
+            document.createElement(e[i]);
+        }
+    </script><![endif]-->
+<!--	<script src="https://code.jquery.com/jquery-1.9.1.js" ></script> -->
+<!-- <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js" type="text/javascript"></script> -->
+	 <script>
+
+     var estoyEnIndex = false;
+		 console.log("Estoy en Index? " + estoyEnIndex);
+	
+     var printStations = false;
+		 console.log("Despliego estaciones? " + printStations);
+
+//	$(function() {
+//		$( "#datepicker1" ).datepicker();
+//		$( "#datepicker2" ).datepicker();
+//	});
+	</script>
+
+
+	<script>
+
+
+
+/*			function initialize() {
+				var mapOptions = {
+
+					center : new google.maps.LatLng(32.192583097846956, -115.85338367462174),
+					zoom : 7,
+					scrollwheel: false,
+					mapTypeId : google.maps.MapTypeId.ROADMAP
+				};
+				var map = new google.maps.Map(document.getElementById('map-canvass'), mapOptions);
+
+				var bounds = new google.maps.LatLngBounds(new google.maps.LatLng(31.840642437418605, -116.64645923614518), new google.maps.LatLng(32.83355966747944, -115.00091327667252));
+
+				var rectangle = new google.maps.Rectangle({
+					strokeColor : '#698300',
+					strokeOpacity : 1,
+					strokeWeight : 2,
+					fillColor : '#95ba00',
+					fillOpacity : .35,
+					bounds : bounds,
+					editable : true
+				});
+				document.getElementById("textBounds").innerHTML = rectangle.getBounds();
+				document.getElementById("bounds").value = rectangle.getBounds();
+
+				google.maps.event.addListener(rectangle, "bounds_changed", function() {
+				document.getElementById("textBounds").innerHTML = rectangle.getBounds();
+					document.getElementById("bounds").value = rectangle.getBounds();
+				});
+
+				rectangle.setMap(map);
+			}
+
+			google.maps.event.addDomListener(window, 'load', initialize);
+*/
+
+		</script>
+
+
+
+
+</head>
+<body>
+
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-33913654-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+	   var ga = document.createElement('script'); ga.type =
+	'text/javascript'; ga.async = true;
+ 	   ga.src = ('https:' == document.location.protocol ? 'https://' :
+	'https://') + 'stats.g.doubleclick.net/dc.js';
+	   var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(ga, s);
+        })();
+
+</script>
+
+  <header>
+
+    	<div class="top_line">
+
+
+        	<div class="container">
+
+                             	<div class="call_us"><a href="?i=2"><img src="https://resnom.cicese.mx/sitio/ui/img/ingles.png" alt="version ingles" loading="lazy"></a></div>
+              
+                <!--<div class="call_us"><img src="img/us.png"></div>-->
+                <div class="socials">
+                 <h7><a href="https://www.cicese.edu.mx">cicese.edu.mx</a></h7>
+                 
+
+                <ul class="socials_list">
+                	                	<li><a href="https://www.facebook.com/pages/Resnom/604119749695677" class="ico_social-facebook" target="_blank"></a></li>
+                                       <li><a href="https://twitter.com/resnom1" class="ico_social-twitter" target="_blank"></a></li>
+                                       <li><a href="https://www.youtube.com/user/CICESEciencia" class="ico_social-youtube" target="_blank"></a></li>
+                    
+
+                </ul>
+
+                
+                                </div>
+                <div class="clear"></div>
+            </div>
+        </div><!-- .top_line -->
+        <div class="header_wrapper container">
+
+        	 <a href="index.php" class="logo"><img src="https://resnom.cicese.mx/sitio/ui/img/logoRed2.png" alt="" width="75%" height="75%"  class="img-responsive" loading="lazy"></a>
+            <nav>
+                <ul class="menu">
+                    <li ><a href="index.php?i=">Inicio</a></li>
+                    <li ><a href="javascript:void(0)">Informaci&oacuten sobre la <br>Red S&iacute;smica del CICESE</a>
+                    	<ul class="sub-menu">
+                            <li><a href="https://resnom.cicese.mx/sitio/acerca?i=">Acerca de la Red S&iacute;smica del CICESE</a></li>
+                            <li><a href="https://resnom.cicese.mx/sitio/historia?i=">Historia</a></li>
+                            <li><a href="https://resnom.cicese.mx/sitio/estaciones?i=">Estaciones e instrumentaci&oacute;n</a></li>
+                            <li><a href="https://resnom.cicese.mx/sitio/procesamiento?i=">Procesamiento de la informaci&oacute;n</a></li>
+ 			<li><a href="https://resnom.cicese.mx/sitio/quien?i=">&iquest;Qui&eacute;nes nos visitan?</a></li>
+
+                        </ul>
+
+
+
+		<li >
+                    	<a href="javascript:void(0)">Reportes de <br>Sismicidad</a>
+                        <ul class="sub-menu">
+
+
+                            <li>
+
+			    <a href="https://resnom.cicese.mx/sitio/reportes?i=">Reportes Especiales</a></li>
+                            <li> <a href="https://resnom.cicese.mx/sitio/sismosRecientes?i=">Sismicidad reciente - Reporte preliminar</a></li>
+                            <li><a href="https://resnom.cicese.mx/sitio/sismosSemanales?i="> &Uacute;ltimos 7 d&iacute;as</a></li>
+                            <li><a href="https://resnom.cicese.mx/sitio/sismosMensuales?i="> &Uacute;ltimos 30 d&iacute;as </a></li>
+			    <!--<li><a href="https://resnom.cicese.mx/sitio/rep/Reporte.html" target="_blank"onClick="window.open(this.href, this.target, 'width=600,height=600,top=200px,left=600px'); return false;">Reportes generados para sismos M>4.5</a></li>-->
+                            <li><a href="https://sismosbcs.cicese.mx/" target="_blank">Sismicidad reciente en La Paz, B.C.S.</a></li>
+                            
+                                              
+                        </ul>
+                    </li>
+                    
+  <li ><a href="proyectos.php"> Cat&aacute;logos y Boletines</a>
+                    <ul class="sub-menu">                   
+                          
+                           
+			    <li>
+                            <a href="https://resnom.cicese.mx/sitio/busqueda?i="> B&uacutesqueda en cat&aacutelogo</a></li>
+			    <li ><a href="https://resnom.cicese.mx/sitio/boletinesTiempos?i="> Boletines y Tiempos de arribo</a></li>
+ 					<li><a href="https://resnom.cicese.mx/sitio/CatalogoAceleracion?i=">Cat&aacutelogos Anuales de Datos de Aceleraci&oacute;n</a></li>
+				<!--	<li><a href="https://resnom.cicese.mx/sitio/serieDEtiempo/datain.php" target="_blank?i="> Sitio de descarga de series de tiempo</a></li> -->
+
+                          
+                        </ul>
+                    </li>         
+
+<li ><a href="proyectos.php"> Divulgaci&oacuten</a>
+                    <ul class="sub-menu">                   
+                            <li
+                            ><a href="https://resnom.cicese.mx/sitio/preguntas?i=">Preguntas Frecuentes</a></li>
+                            <li ><a href="https://resnom.cicese.mx/sitio/capsulas?i=">C&aacute;psulas informativass</a></li>
+                            <li ><a href="https://resnom.cicese.mx/sitio/temblores?i=">Los temblores y sus efectos</a></li>
+                                                        <li ><a href="https://resnom.cicese.mx/sitio/ninos?i=">Solo para ni&ntildeos</a></li>
+                          
+                        </ul>
+                    </li> 
+
+
+
+
+
+                    <li ><a href="https://resnom.cicese.mx/sitio/contacto"> Contacto</a>
+                    <!-- <li><a href="javascript:void(0)">CONTACTS</a>
+                        <ul class="sub-menu">
+                            <li><a href="contact_full.html">Full Width</a></li>
+                            <li><a href="contact_sidebar.html">With Sidebar</a></li>
+                        </ul>
+                    </li>-->
+                </ul><!-- .menu -->
+                <div class="clear"></div>
+            </nav>
+            <div class="head_search">
+                <form class="search_form" method="get" name="search_form">
+                    <input type="text" class="field_search" title="Search..." value="Search..." name="s">
+                </form>
+            </div>    
+        
+        </div>
+    </header>
+
+
+<!--
+<script src="https://resnom.cicese.mx/sitio/ui/js/leaflet.js"></script>
+<script src="https://resnom.cicese.mx/sitio/ui/js/L.Control.MousePosition.js"></script>
+<script src="https://resnom.cicese.mx/sitio/ui/js/jquery-2.2.4.min.js"></script> 
+<script src="https://resnom.cicese.mx/sitio/libs/js/lightbox.min.js"></script>
+<script src="https://resnom.cicese.mx/sitio/ui/js/fallas/fallas.js" ></script>
+<script src="https://resnom.cicese.mx/sitio/ui/js/fallas/placas.js" ></script>
+-->
+
+<link href="libs/css/lightbox.css" rel="stylesheet" />
+
+<script>
+
+
+  if(!estoyEnIndex) {
+    estoyEnIndex = true;
+    console.log("Estoy en Index? " + estoyEnIndex);
+  }
+
+</script>
+
+
+
+
+
+ <div class="main_wrapper">
+        <!-- C O N T E N T -->
+        
+        <div class="content_wrapper">
+            <div class="container" >
+
+                <div class="content_block no-sidebar row" style="margin-top: 0px">
+                    <div class="fl-container span12">
+                        <div class="row">
+                            <div class="posts-block span12">
+                                <div class="contentarea">
+
+                                  <div class="module_line_trigger" data-option="hasShadow" data-background="#00364d repeat 0 0">
+                                        <div class="row-fluid">
+                                         <!--    <div class="span12 module_cont module_google_map module_medium_padding"> </div> -->
+<div id="map" style="width: 100%; height: 600px"></div>
+                                           
+                                                <!-- <iframe width="1170" height="650" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com.mx/?ie=UTF8&amp;ll=31.194008,-114.971924&amp;spn=7.421055,12.7771&amp;t=h&amp;z=7&amp;output=embed"></iframe> --> 
+                                                 <div align="center">
+
+                                                      
+
+						<!--<div id="map_canvas" style="width: 100%; height: 550px;" >    -->
+						<!-- <iframe src="https://resnom-dev.cicese.mx/sitio/maparesnom/" style="width: 100%; height: 550px;" >    </iframe> -->
+						
+					
+					</div><!-- width:1170px; -->
+      
+								</div>
+					 <img src="https://resnom.cicese.mx/sitio/ui/img/magnitud.png" style="margin-left: -5 px; display: block;" loading="lazy">
+				 
+
+	
+<!--
+      
+					<a href="https://158.97.8.196/webicorder/CBX_HHZ_BC_--.2022111600.gif"data-lightbox= Helicorder CBX data-title="Sismograma estaci&oacute;n CBX (PST=Tiempo del Pac&iacute;fico, UTC=Tiempo Universal) "><img src="https://resnom-dev.cicese.mx/sitio/ui/img/cbx2.png" </a>
+					<a href="https://158.97.8.196/webicorder/CBX_HHZ_BC_--.2022111612.gif"data-lightbox= Helicorder CBX style="display:none;" data-title="Sismograma estaci&oacute;n CBX (PST=Tiempo del Pac&iacute;fico, UTC=Tiempo Universal)">Sismograma estaci�n CBX </a>
+			
+<div id="checkboxes">
+ 
+<form>
+<input type="checkbox" value="3084017" id="todos" onclick="changeLayer(this.value);"> Incluir M < 2</input>  
+</form>
+
+</div>
+
+-->
+  </div>
+                                            </div><!-- .module_cont -->
+
+ <div align="right">
+
+                                            </div><!-- .module_cont -->
+                                        </div><!-- .row-fluid -->
+                                    </div><!-- .module_line_trigger -->
+
+       
+                                    <div class="row-fluid">
+
+                                        <div class="span8 module_cont module_testimonial">
+                                        	<div class="bg_title">
+                                        		 <div class="bg_title">
+                                              <h4 class="headInModule">Reportes Especiales - NUEVO</h4>
+                                        </div>
+                                        <div class="well">
+<!-- <ul><li><font size="4"> <strong><a href="https://resnom.cicese.mx/sitio/images/6marzo2020.pdf">* Reporte especial del Sismo M 5.7 del 6 de marzo de 2020</a></font></li> -->
+<li><font size="4"> <strong><a href="https://posgrados.cicese.mx/cienciasdelatierra">*  Informaci&oacute;n del Posgrado en Ciencias de la Tierra con orientaci&oacute;n en Sismolog&iacute;a.</a></font></li> 
+
+</ul></div>
+<!--
+ <div class="well">
+<font size="3"> <strong><a href="https://resnom.cicese.mx/sitio/images/sismofeb.pdf">Reporte especial del Sismo del 16 de febrero de 2018</a></font><br>
+<font size="3"> <strong><a href="https://resnom.cicese.mx/sitio/images/19septiembre2017.pdf">Reporte especial del sismo del 19 de septiembre de 2017 </a></font> <br>
+<font size="3"> <strong><a href="https://resnom.cicese.mx/sitio/images/sismo8sept17.pdf">Reporte especial del sismo del 7 de septiembre de 2017 </a></font>
+
+</div>
+--> 
+
+
+           
+                                        	  <h4 class="headInModule">Noticias</h4></div>                                            
+                                            <div class="module_content blockquote testimonials_list carouselslider items1" data-count="1">
+                                                <ul>
+                                                                                                    <li>
+                                                        <div style ="padding-left:25px">
+                                                            <div class="testimonials_text">
+                                                            	<p><h2>Historia del Depto. de Sismología del CICESE</h2></p>
+                                                            	<br />
+								<div align="center">
+
+                                                                <img style="max-width:95%;border:2px solid #43556f;" src="https://resnom.cicese.mx/sitio/images/Seminario-historia.JPG" alt=""width="40%" height="40%" loading="lazy" </div>
+								</div>
+                                                                <br><br>
+                                                                <p>El pasado 6 de diciembre de 2019 el Dr. Antonio Vidal, jefe del Departamento de Sismolog&iacute;a del CICESE present&oacute; un seminario el cual se hace una semblanza de la historia del Departamento de Sismolog&iacute;a.</p>
+<p>&nbsp;</p>
+<div align="center"><a href="../../../sitio/images/Historia_Departamento_Sismolog%C3%ADa.pdf"> http://resnom.cicese.mx/sitio/images/Historia_Departamento_Sismolog%C3%ADa.pdf </a></div></br ></br >
+                                                                <p>
+								
+                                                                <a class="shortcode_button btn_small btn_type1" href="https://resnom.cicese.mx/sitio/noticia?&i=&n=128">Leer M&aacutes</a>
+                                                                </p>
+                                                                
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    
+                                                                                                        <li>
+                                                        <div style ="padding-left:25px">
+                                                            <div class="testimonials_text">
+                                                            	<p><h2>Desplazamientos horizantales de estaciones GPS cercanas al epicentro del sismo de 7.1 Mw del 19 de septiembre de 2017</h2></p>
+                                                            	<br />
+								<div align="center">
+
+                                                                <img style="max-width:95%;border:2px solid #43556f;" src="https://resnom.cicese.mx/sitio/images/GPS-19-Sep.jpg" alt=""width="40%" height="40%" loading="lazy" </div>
+								</div>
+                                                                <br><br>
+                                                                Estimación preliminar de desplazamientos horizontales medidos en estaciones GPS cercanas al epicentro del sismo de 7.1 Mw del pasado 19 de septiembre de 2017. Desplazamientos cosísmicos estimados a partir de soluciones diarias (2 días antes y después del evento) utilizado orbitas rápidas del IGS. La estrella roja indica el epicentro y el cuadro rojo el modelo de fallas finitas del USGS. (Análisis y figura de Alejandro González Ortega, CICESE).</br ></br >
+                                                                <p>
+								
+                                                                <a class="shortcode_button btn_small btn_type1" href="https://resnom.cicese.mx/sitio/noticia?&i=&n=101">Leer M&aacutes</a>
+                                                                </p>
+                                                                
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    
+                                                                                                        <li>
+                                                        <div style ="padding-left:25px">
+                                                            <div class="testimonials_text">
+                                                            	<p><h2>&iquest;SE PUEDEN PREDECIR LOS SISMOS?</h2></p>
+                                                            	<br />
+								<div align="center">
+
+                                                                <img style="max-width:95%;border:2px solid #43556f;" src="https://resnom.cicese.mx/sitio/images/sis3.gif" alt=""width="40%" height="40%" loading="lazy" </div>
+								</div>
+                                                                <br><br>
+                                                                <p style="text-align: justify;"><span style="font-size: 12pt;">No es posible predecir temblores. Hasta el momento no existe en el mundo un m&eacute;todo con bases cient&iacute;ficas solidas que permita predecir con exactitud la ocurrencia de un evento s&iacute;smica de cualquier magnitud.</span></p>
+<p><span style="font-size: 12pt;">Sin embargo, es importante estar preparados para un evento de esta naturaleza ya que vivimos en un pa&iacute;s en el por su posici&oacute;n geogr&aacute;fica tiembla constantemente.&nb</br ></br >
+                                                                <p>
+								
+                                                                <a class="shortcode_button btn_small btn_type1" href="https://resnom.cicese.mx/sitio/noticia?&i=&n=58">Leer M&aacutes</a>
+                                                                </p>
+                                                                
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    
+                                                                                                     
+                                                </ul>
+                                                <a id="anchor11"></a>
+                                            </div>
+                                        </div>
+
+		
+                                        
+                                        <div class="span4 module_cont module_text_area" style="margin-left:18px;">
+
+
+						
+<div align="center">
+ 
+<div style="font-weight:bold">REDES SISMOL&OacuteGICAS DEL CICESE</div><br>
+					<a href="https://resnom-mf.cicese.mx/"><img style="max-width:100%;border:1px solid #43556f;" src="https://resnom.cicese.mx/sitio/ui/img/RESNOM-MF.jpg" style="margin-right: 1 px; display: block;" height="210" width="250" loading="lazy"></a><br><br>
+					<a href="https://regnom.cicese.mx/"><img style="max-width:100%;border:1px solid #43556f;" src="https://resnom.cicese.mx/sitio/ui/img/Regnom.jpg" style="margin-right: 1 px; display: block;" height="210" width="250" loading="lazy"></a><br><br>
+					<a href="http://redmexicali.cicese.mx/"><img style="max-width:100%;border:1px solid #43556f;" src="https://resnom.cicese.mx/sitio/ui/img/RAUBC.jpg" style="margin-right: 1 px; display: block;"height="210" width="250" loading="lazy"></a><br><br>
+					<a href="https://resban.cicese.mx/"><img style="max-width:100%;border:1px solid #43556f;" src="https://resnom.cicese.mx/sitio/ui/img/Resban.jpg" style="margin-right: 1 px; display: block;"height="210" width="250" loading="lazy"></a><br><br>
+					<a href="https://sismosbcs.cicese.mx/"><img style="max-width:100%;border:1px solid #43556f;" src="https://resnom.cicese.mx/sitio/ui/img/RSLP.jpg" style="margin-right: 1 px; display: block;"height="210" width="250" loading="lazy"></a><br><br>
+		  </div>
+
+                                            <div class="bg_title"></div>
+                                        </div>
+                                        <!--.module_cont -->                                        
+                                    </div><!-- .row-fluid -->
+
+
+
+									<div class="module_line_trigger" data-option="hasShadow" data-background="#e1e1e1 url(https://resnom.cicese.mx/sitio/ui/img/bg_pattern1.png) repeat 0 0" data-top-padding="top_padding_normal" data-bottom-padding="module_normal_padding">
+                                        <div class="row-fluid">
+                                            <div class="span12 module_cont module_feature_posts module_medium_padding">
+                                                <div class="bg_title">
+                                                  <h4 class="headInModule">Reportes de Sismicidad</h4></div>
+                                                <div class="featured_slider">
+                                                    <div class="carouselslider featured_posts items4" data-count="4">
+                                                        <ul class="item_list">                                                    
+                                                            <li>
+                                                                <div class="item">
+                                                                    <div class="img_block wrapped_img"><img src="https://resnom.cicese.mx/sitio/ui/img/10.png" alt="" loading="lazy"><div class="carousel_fadder"></div></div>
+                                                                    <div class="carousel_body">
+                                                                        <div class="carousel_title">
+									   <h6><a href="https://resnom.cicese.mx/sitio/sismosRecientes?i=">Sismicidad reciente</a></h6>   
+                                                                          
+                                                                            <span class="post_type post_type_video"></span>
+                                                                        </div>
+                                                                        <div class="carousel_desc">
+									   <div class="exc">Reporte preliminar aut&oacutematico. <br> Estos datos no han sido revisados por un analista.</div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="item">
+                                                                    <div class="img_block wrapped_img"><img src="https://resnom.cicese.mx/sitio/ui/img/03.png" alt="" loading="lazy"><div class="carousel_fadder"></div></div>
+                                                                    <div class="carousel_body">
+                                                                        <div class="carousel_title">
+                                                                            <h6><a href="https://resnom.cicese.mx/sitio/sismosSemanales?i=">Sismicidad &uacuteltimos 7 d&iacuteas</a></h6>         
+                                                                            <span class="post_type post_type_video"></span>
+                                                                        </div>
+                                                                        <div class="carousel_desc">	                                                                
+                                                                            <div class="exc">Actividad s&iacutesmica de la regi&oacuten registrada durante los &uacuteltimos 7 d&iacuteas.</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li> 
+                                                            <li>
+                                                                <div class="item">
+                                                                    <div class="img_block wrapped_img"><img src="https://resnom.cicese.mx/sitio/ui/img/02.png" alt="" loading="lazy"><div class="carousel_fadder"></div></div>
+                                                                    <div class="carousel_body">
+                                                                        <div class="carousel_title">
+                                                                            <h6><a href="https://resnom.cicese.mx/sitio/sismosMensuales?i=">Sismicidad &uacuteltimos 30 d&iacuteas</a></h6>
+                                                                            <span class="post_type post_type_video"></span>
+                                                                        </div>
+                                                                        <div class="carousel_desc">	                                                                
+                                                                            <div class="exc">Actividad s&iacutesmica de la regi&oacuten registrada durante los &uacuteltimos 30 d&iacuteas.</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>                                          
+                                                                                                     
+                                                            <li>
+                                                                <div class="item">
+                                                                    <div class="img_block wrapped_img"><img src="https://resnom.cicese.mx/sitio/ui/img/04.png"  alt="" loading="lazy"><div class="carousel_fadder"></div></div>
+                                                                    <div class="carousel_body">
+                                                                        <div class="carousel_title">
+									
+                                                                            <h6><a href="https://sismosbcs.cicese.mx" target="_blank">Sismicidad reciente en La Paz, B.C.S.</a></h6>
+                                                                            <span class="post_type post_type_text"></span>
+                                                                        </div>
+                                                                        <div class="carousel_desc">	                                                                
+                                                                            <div class="exc">Reporte del CICESE Unidad La Paz.</div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+<li>
+                                                                <div class="item">
+                                                                    <div class="img_block wrapped_img"><img src="https://resnom.cicese.mx/sitio/ui/img/08.png"  alt="" loading="lazy"><div class="carousel_fadder"></div></div>
+                                                                    <div class="carousel_body">
+                                                                        <div class="carousel_title">
+									<h6><a href="https://www.ssn.unam.mx/" target="_blank">Actividad s&iacutesmica en M&eacutexico</a></h6>
+
+                                                                            <span class="post_type post_type_video"></span>
+                                                                        </div>
+                                                                        <div class="carousel_desc">
+										<div class="exc">Sismicidad reportada por el Servicio Sismol&oacutegico Nacional, Instituto de Geof&iacutesica, UNAM.</div>	                                                                
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+
+                                                            
+                                                        </ul>                        
+                                                    </div>
+                                                    <div class="clear"></div>
+                                                </div><!-- .featured_slider -->
+                                            </div><!-- .module_cont -->
+                                        </div><!-- .row-fluid -->
+
+                                        
+                                        
+                                    </div><!-- .module_line_trigger -->
+                                    
+                                    
+
+					<!--Alianzas-->
+					 <div class="row-fluid">
+                                        <div class="span12 module_cont module_partners">
+											<div class="bg_title"><h4 class="headInModule">Redes s&iacute;smicas operadas por el CICESE</h4></div> 
+                                            <div class="module_content sponsors_works carouselslider items5" data-count="5">
+                                                <ul>
+                                                	
+                                                	                                                     <li>
+                                                    	
+                                                        <div class="item">
+                                                            <a href="http://resnom-mf.cicese.mx/" width="208" height="88" alt="" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/RESNOM-MF.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                
+                                                                                    <li>
+                                                    	
+                                                        <div class="item">
+                                                            <a href="http://resban.cicese.mx/" width="208" height="88" alt="" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/Resban.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                
+                                                                                    <li>
+                                                    	
+                                                        <div class="item">
+                                                            <a href="http://redmexicali.cicese.mx/" width="208" height="88" alt="" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/RAUBC.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                
+                                                                                    <li>
+                                                    	
+                                                        <div class="item">
+                                                            <a href="http://sismosbcs.cicese.mx/" width="208" height="88" alt="" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/RSLP.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                
+                                                                                    <li>
+                                                    	
+                                                        <div class="item">
+                                                            <a href="http://regnom.cicese.mx" width="208" height="88" alt="" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/Regnom.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                
+                                                                                </ul>
+                                            </div>                                        
+                                        </div>
+                                    </div><!-- .row-fluid -->
+
+
+									<div class="row-fluid">
+                                        <div class="span12 module_cont module_partners">
+											<div class="bg_title"><h4 class="headInModule">Ligas de inter&eacutes</h4></div> 
+                                            <div class="module_content sponsors_works carouselslider items5" data-count="5">
+                                                <ul>
+                                                                                                     <li>
+                                                        <div class="item">
+                                                            <a href="http://www.cicese.edu.mx/index.php" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/_130813195847.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                                                                                     <li>
+                                                        <div class="item">
+                                                            <a href="http://www.conacyt.gob.mx/" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/_130813195910.png" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                                                                                     <li>
+                                                        <div class="item">
+                                                            <a href="http://www.ngdc.noaa.gov/hazard/" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/_130813200011.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                                                                                     <li>
+                                                        <div class="item">
+                                                            <a href="http://earthquake.usgs.gov/earthquakes/?source=sitenav" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/_130813200101.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                                                                                     <li>
+                                                        <div class="item">
+                                                            <a href="http://www.seismolab.caltech.edu/" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/_130813200210.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                                                                                     <li>
+                                                        <div class="item">
+                                                            <a href="http://eqinfo.ucsd.edu/dbrecenteqs/anza/" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/_130813200239.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                                                                                     <li>
+                                                        <div class="item">
+                                                            <a href="http://scedc.caltech.edu/" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/_130813200325.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                                                                                     <li>
+                                                        <div class="item">
+                                                            <a href="http://www.ssn.unam.mx/" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/_130813200406.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                                                                                     <li>
+                                                        <div class="item">
+                                                            <a href="http://www.iris.edu/hq/" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/_130813200440.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                                                                                     <li>
+                                                        <div class="item">
+                                                            <a href="http://www.cenapred.unam.mx/es/" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/_130813200519.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                                                                                     <li>
+                                                        <div class="item">
+                                                            <a href="http://radius-tij.cicese.mx/" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/_130813200606.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                                                                                     <li>
+                                                        <div class="item">
+                                                            <a href="http://sopac.ucsd.edu/" target="_blank"><img src="https://resnom.cicese.mx/control/ui/images/_130813200635.jpg" width="208" height="88" alt="" loading="lazy"></a>
+                                                        </div>
+                                                    </li>
+                                                                                                 </ul>
+                                            </div>                                        
+                                        </div>
+                                    </div><!-- .row-fluid -->	
+					<!--Fin Alianzas-->
+					
+					                                
+                                </div><!-- .contentarea -->
+                            </div>
+                            <div class="left-sidebar-block span3">
+                          
+                            </div><!-- .left-sidebar -->
+                        </div>
+                        <div class="clear"><!-- ClearFix --></div>
+                    </div><!-- .fl-container -->
+                    <div class="right-sidebar-block span3">
+                        <aside class="sidebar">
+                        </aside>
+                    </div><!-- .right-sidebar -->
+                    <div class="clear"><!-- ClearFix --></div>
+                </div>
+            </div><!-- .container -->
+        </div><!-- .content_wrapper -->
+	
+    </div><!-- .main_wrapper -->
+
+
+
+ 
+
+	<div class="footer_twitter">
+    	<div class="container">
+        </div>
+        </div><!-- .footer_twitter -->
+
+    <div class="pre_footer">
+        <div class="container">
+            <aside id="footer_bar" class="row">
+                <div class="span3">
+                    <div class="sidepanel widget_flickr">
+                        <div class="bg_title">
+                          <h4 class="sidebar_header">Accesos r&aacutepidos</h4></div>
+                          	<p>Mapa del Sitio</p>
+                            <p></p>
+                    </div><!-- .sidepanel -->
+                </div>
+                <div class="span6">
+                    <div class="sidepanel widget_about">
+                        <div class="bg_title">
+                          <h4 class="sidebar_header">Redes s&iacutesmicas operadas por el CICESE</h4></div>
+                    
+                        <div class="span6 module_cont module_text_area module_none_padding">
+
+                        					 				<p><a href="http://resnom-mf.cicese.mx/" target="_blank">RESNOM Movimientos Fuertes </a></p>
+					 
+                        					 				<p><a href="http://resban.cicese.mx/" target="_blank">Red Sismol&oacute;gica de Banda Ancha del Golfo de California (RESBAN)</a></p>
+					 
+                        					 				<p><a href="http://redmexicali.cicese.mx/" target="_blank">Redes Acelerom&eacute;tricas Urbanas de Baja California (RAUBC)</a></p>
+					 
+                        					 				<p><a href="http://sismosbcs.cicese.mx/" target="_blank">Red S&iacute;smica de La Paz</a></p>
+					 
+                        					 				<p><a href="http://regnom.cicese.mx" target="_blank">Red Geodésica del Noroeste de México </a></p>
+					 
+                        	                        </div>
+                    </div>
+                </div>
+                <div class="span3">
+                    <div class="sidepanel widget_posts">
+                        <div class="bg_title">
+                          <h4 class="sidebar_header">Servicios</h4></div>
+                        <div class="span3 module_cont module_text_area module_none_padding">
+                                  <p><a href="https://resnom.cicese.mx/sitio/preguntas">Preguntas Frecuentes</a></p>
+                       		   <p><a href="https://resnom.cicese.mx/sitio/capsulas">C&aacutepsulas informativas</a></p>
+                        	   <p><a href="https://resnom.cicese.mx/sitio/temblores">Los temblores y sus efectos</a></p>
+                        </div>
+                    </div><!-- .sidepanel -->
+                </div>
+
+            </aside>
+        </div>
+    </div><!-- .pre_footer -->
+
+   <footer>
+        <div class="footer_line container">
+        	<div class="footer_line container">
+		<p align="left"
+	  
+<div class="copyright">&copy; 2017 RESNOM <br> Red S&iacutesmica del Noroeste de M&eacutexico, Departamento de Sismolog&iacutea CICESE, todos los derechos reservados 2013 - 2017. Esta p&aacutegina y su contenido pueden ser reproducidos con fines no lucrativos,
+siempre y cuando no se mutile, se cite la fuente completa y su direcci&oacuten electr&oacutenica. De otra forma, requiere autorizaci&oacuten previa por escrito de la instituci&oacuten.<a href="https://doi.org/10.7914/SN/BC"> doi.org/10.7914/SN/BC </a> <br><a href="https://resnom.cicese.mx/sitio/citarnos">|Como citarnos|    </a><a href="https://resnom.cicese.mx/sitio/ui/img/boletines/AvisoLegal.pdf" target=\"_blank\">|Aviso Legal|</a> </div>
+
+ 
+
+
+            <div class="socials">
+            						<ul class="socials_list">
+												<li><a href="https://www.facebook.com/pages/Resnom/604119749695677" class="ico_social-facebook" target="_blank"></a></li>
+					   						<li><a href="https://twitter.com/resnom1" class="ico_social-twitter" target="_blank"></a></li>
+					   						<li><a href="https://www.youtube.com/user/CICESEciencia" class="ico_social-youtube" target="_blank"></a></li>
+											</ul>
+                            </div>
+            <div class="clear"></div>
+            <a href="javascript:void(0)" class="btn2top"></a>
+        </div>
+        <div class="footer_border"></div>
+    </footer>
+
+        <script src="https://resnom.cicese.mx/sitio/ui/js/leaflet.js"></script>
+        <script src="https://resnom.cicese.mx/sitio/ui/js/L.Control.MousePosition.js"></script>
+        <script src="https://resnom.cicese.mx/sitio/ui/js/jquery-2.2.4.min.js"></script>
+        <script src="https://resnom.cicese.mx/sitio/ui/js/fallas/fallas.js" ></script>
+        <script src="https://resnom.cicese.mx/sitio/ui/js/fallas/placas.js" ></script>
+
+
+	
+
+<script>
+
+
+function estilo(feature) {
+return {
+weight: 0.8,
+opacity: 0.9,
+color: 'DarkSlateGrey'
+};
+}
+function estilo2(feature) {
+return {
+weight: 1.2,
+opacity: 1,
+color: 'OrangeRed'
+};
+}
+
+    // Create variable to hold map element, give initial settings to map
+    var map = L.map('map',{ center: [28.0, -112.00], zoom: 6, layers: street, Mfallas, Mplacas});
+
+  
+   // L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: 'OpenStreetMap' }).addTo(map);  
+   // L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', { attribution: 'Esri.WorldStreetMap' }).addTo(map);  
+var street =  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', { attribution: 'Esri.WorldStreetMap' }).addTo(map);  
+    imagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Esri.WorldStreetMap' }) ;
+	grey = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', { attribution: 'Esri.WorldStreetMap' }) ;
+	ocean = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}', { attribution: 'Esri.WorldStreetMap' }) ;
+
+var baseMaps = {
+    "Street": street,
+    "Satelital": imagery,
+    "Grey": grey,
+	"Ocean" : ocean
+};
+var overlayMaps = {
+    "fallas": Mfallas,
+   };
+var overlayMaps = {
+    "placas": Mplacas,
+   };
+
+
+
+var sismos = [['60307867',L.latLng(33.2312,-116.042),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307867&preliminar=1"> Magnitud 2.3 <i><br></h1>Estado: Autom&aacute;tico-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-16 16:53:54 <br>Fecha y Hora : 2022-11-17 00:53:54<p> ubicado a 84.01 km al noroeste  del poblado de  Progreso, Mexicali, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307867.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis02f.png',2.33],['60307837',L.latLng(31.565,-115.684),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307837&preliminar=1"> Magnitud 2.3 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-16 04:29:42 <br>Fecha y Hora : 2022-11-16 12:29:42<p> ubicado a 21.47 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307837.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis02f.png',2.3],['60307827',L.latLng(33.2807,-115.995),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307827&preliminar=1"> Magnitud 1.7 <i><br></h1>Estado: Autom&aacute;tico-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-16 01:51:31 <br>Fecha y Hora : 2022-11-16 09:51:31<p> ubicado a 86.77 km al noroeste  del poblado de  Progreso, Mexicali, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307827.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis02g.png',1.71],['60307844',L.latLng(31.567,-115.663),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307844&preliminar=1"> Magnitud 1.3 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-15 23:13:39 <br>Fecha y Hora : 2022-11-16 07:13:39<p> ubicado a 22.56 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis02g.png',1.3],['60307843',L.latLng(31.575,-115.698),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307843&preliminar=1"> Magnitud 0.8 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-15 18:14:56 <br>Fecha y Hora : 2022-11-16 02:14:56<p> ubicado a 21.99 km al norte  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03h.png',0.8],['60307841',L.latLng(31.565,-115.692),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307841&preliminar=1"> Magnitud 1.1 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-15 16:34:57 <br>Fecha y Hora : 2022-11-16 00:34:57<p> ubicado a 21.17 km al norte  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03g.png',1.1],['60307840',L.latLng(31.564,-115.699),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307840&preliminar=1"> Magnitud 1.1 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-15 06:57:06 <br>Fecha y Hora : 2022-11-15 14:57:06<p> ubicado a 20.82 km al norte  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03g.png',1.1],['60307839',L.latLng(24.024,-108.635),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307839&preliminar=1"> Magnitud 3.4 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-15 04:50:09 <br>Fecha y Hora : 2022-11-15 12:50:09<p> ubicado a 125.42 km al suroeste  del poblado de  Navolato, Navolato, Sinaloa.</p><p><i>       <i><p>','sis03e.png',3.4],['60307838',L.latLng(28.152,-112.371),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307838&preliminar=1"> Magnitud 2.9 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-15 03:27:30 <br>Fecha y Hora : 2022-11-15 11:27:30<p> ubicado a 85.62 km al suroeste  del poblado de  Bahía de Kino, Hermosillo, Sonora.</p><p><i>       <i><p>','sis03f.png',2.9],['60307739',L.latLng(30.773,-115.189),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307739&preliminar=1"> Magnitud 1.6 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-15 01:03:21 <br>Fecha y Hora : 2022-11-15 09:03:21<p> ubicado a 43.55 km al suroeste  del poblado de  San Felipe, Mexicali, Baja California.</p><p><i>       <i><p>','sis03g.png',1.6],['60307737',L.latLng(31.56,-115.682),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307737&preliminar=1"> Magnitud 1.6 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-14 21:39:09 <br>Fecha y Hora : 2022-11-15 05:39:09<p> ubicado a 21.04 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307737.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.6],['60307732',L.latLng(31.564,-115.679),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307732&preliminar=1"> Magnitud 1.4 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-14 21:37:59 <br>Fecha y Hora : 2022-11-15 05:37:59<p> ubicado a 21.57 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307732.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.4],['60307738',L.latLng(32.666,-116.043),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307738&preliminar=1"> Magnitud 0.8 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-14 20:35:18 <br>Fecha y Hora : 2022-11-15 04:35:18<p> ubicado a 43.95 km al oeste  del poblado de  Progreso, Mexicali, Baja California.</p><p><i>       <i><p>','sis03h.png',0.8],['60307667',L.latLng(32.597,-116.984),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307667&preliminar=1"> Magnitud 1.4 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-14 12:32:03 <br>Fecha y Hora : 2022-11-14 20:32:03<p> ubicado a 10.65 km al norte  de la ciudad de  Tijuana, Tijuana, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307667.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.4],['60307662',L.latLng(32.071,-115.124),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307662&preliminar=1"> Magnitud 2.3 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-14 11:38:56 <br>Fecha y Hora : 2022-11-14 19:38:56<p> ubicado a 17.89 km al sur  del poblado de  Doctor Alberto Oviedo Mota, Mexicali, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307662.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03f.png',2.3],['60307642',L.latLng(32.155,-115.834),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307642&preliminar=1"> Magnitud 1.6 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-14 08:29:45 <br>Fecha y Hora : 2022-11-14 16:29:45<p> ubicado a 52.77 km al suroeste  del poblado de  Progreso, Mexicali, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307642.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.6],['60307637',L.latLng(31.558,-115.679),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307637&preliminar=1"> Magnitud 1.9 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-14 08:18:41 <br>Fecha y Hora : 2022-11-14 16:18:41<p> ubicado a 20.97 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307637.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.9],['60307632',L.latLng(32.412,-116.083),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307632&preliminar=1"> Magnitud 1.1 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-14 01:28:50 <br>Fecha y Hora : 2022-11-14 09:28:50<p> ubicado a 50.33 km al oeste  del poblado de  Progreso, Mexicali, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307632.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.1],['60307627',L.latLng(31.564,-115.688),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307627&preliminar=1"> Magnitud 1.4 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-14 00:59:01 <br>Fecha y Hora : 2022-11-14 08:59:01<p> ubicado a 21.21 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307627.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.4],['60307577',L.latLng(31.57,-115.689),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307577&preliminar=1"> Magnitud 2.1 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-13 20:44:35 <br>Fecha y Hora : 2022-11-14 04:44:35<p> ubicado a 21.79 km al norte  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307577.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03f.png',2.1],['60307572',L.latLng(31.204,-115.959),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307572&preliminar=1"> Magnitud 2 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-13 15:06:02 <br>Fecha y Hora : 2022-11-13 23:06:02<p> ubicado a 26.85 km al suroeste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307572.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03f.png',2],['60307849',L.latLng(31.564,-115.645),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307849&preliminar=1"> Magnitud 1.7 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-13 11:32:19 <br>Fecha y Hora : 2022-11-13 19:32:19<p> ubicado a 23.15 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03g.png',1.7],['60307848',L.latLng(32.699,-115.681),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307848&preliminar=1"> Magnitud 1.7 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-13 10:45:50 <br>Fecha y Hora : 2022-11-13 18:45:50<p> ubicado a 15.97 km al noroeste  del poblado de  Progreso, Mexicali, Baja California.</p><p><i>       <i><p>','sis03g.png',1.7],['60307562',L.latLng(31.177,-115.464),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307562&preliminar=1"> Magnitud 2.2 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-13 10:44:52 <br>Fecha y Hora : 2022-11-13 18:44:52<p> ubicado a 38.01 km al sureste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307562.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03f.png',2.2],['60307557',L.latLng(31.574,-115.679),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307557&preliminar=1"> Magnitud 1.5 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-13 09:44:03 <br>Fecha y Hora : 2022-11-13 17:44:03<p> ubicado a 22.57 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307557.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.5],['60307846',L.latLng(30.529,-113.999),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307846&preliminar=1"> Magnitud 2.8 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-13 07:58:35 <br>Fecha y Hora : 2022-11-13 15:58:35<p> ubicado a 97.36 km al sureste  del poblado de  San Felipe, Mexicali, Baja California.</p><p><i>       <i><p>','sis03f.png',2.8],['60307552',L.latLng(31.567,-115.67),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307552&preliminar=1"> Magnitud 1.3 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-13 05:39:57 <br>Fecha y Hora : 2022-11-13 13:39:57<p> ubicado a 22.25 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307552.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.3],['60307845',L.latLng(31.217,-115.612),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307845&preliminar=1"> Magnitud 1.2 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-13 04:27:13 <br>Fecha y Hora : 2022-11-13 12:27:13<p> ubicado a 24.78 km al sureste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03g.png',1.2],['60307746',L.latLng(31.202,-115.87),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307746&preliminar=1"> Magnitud 1.7 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-13 03:09:07 <br>Fecha y Hora : 2022-11-13 11:09:07<p> ubicado a 22.59 km al sur  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03g.png',1.7],['60307547',L.latLng(31.572,-115.681),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307547&preliminar=1"> Magnitud 1.2 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-13 03:03:26 <br>Fecha y Hora : 2022-11-13 11:03:26<p> ubicado a 22.29 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307547.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.2],['60307542',L.latLng(31.812,-115.745),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307542&preliminar=1"> Magnitud 1.7 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-13 00:17:46 <br>Fecha y Hora : 2022-11-13 08:17:46<p> ubicado a 47.11 km al norte  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307542.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.7],['60307537',L.latLng(31.568,-115.683),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307537&preliminar=1"> Magnitud 1.2 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-12 23:15:17 <br>Fecha y Hora : 2022-11-13 07:15:17<p> ubicado a 21.81 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307537.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.2],['60307532',L.latLng(32.299,-115.012),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307532&preliminar=1"> Magnitud 1.9 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-12 22:16:35 <br>Fecha y Hora : 2022-11-13 06:16:35<p> ubicado a 8.84 km al este  del poblado de  Guadalupe Victoria, Mexicali, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307532.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.9],['60307745',L.latLng(31.215,-115.614),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307745&preliminar=1"> Magnitud 1.2 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-12 20:31:22 <br>Fecha y Hora : 2022-11-13 04:31:22<p> ubicado a 24.83 km al sureste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03g.png',1.2],['60307527',L.latLng(31.564,-115.678),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307527&preliminar=1"> Magnitud 1.5 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-12 19:44:07 <br>Fecha y Hora : 2022-11-13 03:44:07<p> ubicado a 21.61 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307527.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.5],['60307432',L.latLng(32.755,-115.829),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307432&preliminar=1"> Magnitud 1.8 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-12 17:44:09 <br>Fecha y Hora : 2022-11-13 01:44:09<p> ubicado a 29.99 km al noroeste  del poblado de  Progreso, Mexicali, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307432.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.8],['60307744',L.latLng(31.174,-115.437),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307744&preliminar=1"> Magnitud 1.3 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-12 16:40:25 <br>Fecha y Hora : 2022-11-13 00:40:25<p> ubicado a 40.25 km al sureste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03g.png',1.3],['60307743',L.latLng(31.519,-115.64),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307743&preliminar=1"> Magnitud 1.6 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-12 14:59:05 <br>Fecha y Hora : 2022-11-12 22:59:05<p> ubicado a 19.46 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03g.png',1.6],['60307741',L.latLng(31.571,-115.687),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307741&preliminar=1"> Magnitud 1.2 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-12 10:23:57 <br>Fecha y Hora : 2022-11-12 18:23:57<p> ubicado a 21.96 km al norte  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03g.png',1.2],['60307657',L.latLng(28.151,-112.355),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307657&preliminar=1"> Magnitud 3.6 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-12 05:57:41 <br>Fecha y Hora : 2022-11-12 13:57:41<p> ubicado a 84.96 km al suroeste  del poblado de  Bahía de Kino, Hermosillo, Sonora.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307657.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03e.png',3.6],['60307357',L.latLng(31.566,-115.695),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307357&preliminar=1"> Magnitud 1.2 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-12 04:37:58 <br>Fecha y Hora : 2022-11-12 12:37:58<p> ubicado a 21.16 km al norte  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307357.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.2],['60307352',L.latLng(32.116,-116.388),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307352&preliminar=1"> Magnitud 1.6 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-12 03:05:34 <br>Fecha y Hora : 2022-11-12 11:05:34<p> ubicado a 33.79 km al noreste  de la ciudad de  Ensenada, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307352.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.6],['60307347',L.latLng(31.567,-115.685),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307347&preliminar=1"> Magnitud 1.4 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-12 02:22:25 <br>Fecha y Hora : 2022-11-12 10:22:25<p> ubicado a 21.63 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307347.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.4],['60307342',L.latLng(31.564,-115.688),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307342&preliminar=1"> Magnitud 2.8 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-12 02:20:31 <br>Fecha y Hora : 2022-11-12 10:20:31<p> ubicado a 21.21 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307342.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>  <br><a href="https://resnom.cicese.mx/reportes/shakemaps/shake/60307342/intensity.jpg"data-lightbox= Mapa data-title="Mapa de intensidades generado autom&aacuteticamente">Mapa de Intensidades </a>   <i><p>','sis03f.png',2.8],['60307740',L.latLng(31.525,-115.625),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307740&preliminar=1"> Magnitud 0.6 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-11 22:10:14 <br>Fecha y Hora : 2022-11-12 06:10:14<p> ubicado a 20.92 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03h.png',0.6],['60307669',L.latLng(31.561,-115.674),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307669&preliminar=1"> Magnitud 1.2 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-11 22:08:53 <br>Fecha y Hora : 2022-11-12 06:08:53<p> ubicado a 21.48 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03g.png',1.2],['60307327',L.latLng(31.742,-116.239),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307327&preliminar=1"> Magnitud 1.6 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-11 21:28:09 <br>Fecha y Hora : 2022-11-12 05:28:09<p> ubicado a 26.95 km al este  del poblado de  Benito García (El Zorrillo), Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307327.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.6],['60307668',L.latLng(31.077,-115.416),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307668&preliminar=1"> Magnitud 1.7 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-11 09:58:33 <br>Fecha y Hora : 2022-11-11 17:58:33<p> ubicado a 48.85 km al sureste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03g.png',1.7],['60307247',L.latLng(31.552,-115.693),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307247&preliminar=1"> Magnitud 2.4 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-11 04:43:25 <br>Fecha y Hora : 2022-11-11 12:43:25<p> ubicado a 19.8 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307247.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03f.png',2.4],['60307242',L.latLng(31.561,-115.684),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307242&preliminar=1"> Magnitud 2.3 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-11 03:52:47 <br>Fecha y Hora : 2022-11-11 11:52:47<p> ubicado a 21.06 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307242.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03f.png',2.3],['60307232',L.latLng(31.566,-115.677),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307232&preliminar=1"> Magnitud 1.7 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-11 01:47:55 <br>Fecha y Hora : 2022-11-11 09:47:55<p> ubicado a 21.85 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307232.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.7],['60307227',L.latLng(32.693,-115.729),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307227&preliminar=1"> Magnitud 1.6 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-10 23:41:21 <br>Fecha y Hora : 2022-11-11 07:41:21<p> ubicado a 18.41 km al noroeste  del poblado de  Progreso, Mexicali, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307227.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.6],['60307249',L.latLng(30.85,-115.293),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307249&preliminar=1"> Magnitud 1.4 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-10 19:12:50 <br>Fecha y Hora : 2022-11-11 03:12:50<p> ubicado a 47.44 km al suroeste  del poblado de  San Felipe, Mexicali, Baja California.</p><p><i>       <i><p>','sis03g.png',1.4],['60307248',L.latLng(31.178,-115.474),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307248&preliminar=1"> Magnitud 2 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-10 14:46:06 <br>Fecha y Hora : 2022-11-10 22:46:06<p> ubicado a 37.2 km al sureste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03f.png',2],['60307142',L.latLng(31.177,-115.475),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307142&preliminar=1"> Magnitud 2.4 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-10 11:24:30 <br>Fecha y Hora : 2022-11-10 19:24:30<p> ubicado a 37.19 km al sureste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307142.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03f.png',2.4],['60307130',L.latLng(28.146,-112.259),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307130&preliminar=1"> Magnitud 3.5 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-10 05:18:31 <br>Fecha y Hora : 2022-11-10 13:18:31<p> ubicado a 81.42 km al sur  del poblado de  Bahía de Kino, Hermosillo, Sonora.</p><p><i>       <i><p>','sis03e.png',3.5],['60307127',L.latLng(32.671,-115.867),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307127&preliminar=1"> Magnitud 1.1 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-10 02:53:22 <br>Fecha y Hora : 2022-11-10 10:53:22<p> ubicado a 28.28 km al oeste  del poblado de  Progreso, Mexicali, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307127.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>      <i><p>','sis03g.png',1.1],['60307129',L.latLng(30.554,-114.042),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307129&preliminar=1"> Magnitud 2 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-10 01:36:24 <br>Fecha y Hora : 2022-11-10 09:36:24<p> ubicado a 92.4 km al sureste  del poblado de  San Felipe, Mexicali, Baja California.</p><p><i>       <i><p>','sis03f.png',2],['60307128',L.latLng(31.572,-115.69),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307128&preliminar=1"> Magnitud 1.3 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-09 22:20:44 <br>Fecha y Hora : 2022-11-10 06:20:44<p> ubicado a 21.96 km al norte  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03g.png',1.3],['60307037',L.latLng(31.562,-115.684),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307037&preliminar=1"> Magnitud 2.9 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-09 14:56:27 <br>Fecha y Hora : 2022-11-09 22:56:27<p> ubicado a 21.16 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307037.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>  <br><a href="https://resnom.cicese.mx/reportes/shakemaps/shake/60307037/intensity.jpg"data-lightbox= Mapa data-title="Mapa de intensidades generado autom&aacuteticamente">Mapa de Intensidades </a>   <i><p>','sis03f.png',2.9],['60307135',L.latLng(30.72,-114.148),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307135&preliminar=1"> Magnitud 2.6 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-09 07:03:44 <br>Fecha y Hora : 2022-11-09 15:03:44<p> ubicado a 74.15 km al sureste  del poblado de  San Felipe, Mexicali, Baja California.</p><p><i>       <i><p>','sis03f.png',2.6],['60307134',L.latLng(27.273,-111.512),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307134&preliminar=1"> Magnitud 2.4 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-09 05:33:03 <br>Fecha y Hora : 2022-11-09 13:33:03<p> ubicado a 75.03 km al este  del poblado de  Santa Rosalía, Mulege, Baja California Sur.</p><p><i>       <i><p>','sis03f.png',2.4],['60307133',L.latLng(30.513,-114.081),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307133&preliminar=1"> Magnitud 2 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-09 03:24:09 <br>Fecha y Hora : 2022-11-09 11:24:09<p> ubicado a 92.11 km al sureste  del poblado de  San Felipe, Mexicali, Baja California.</p><p><i>       <i><p>','sis03f.png',2],['60307131',L.latLng(31.566,-115.682),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307131&preliminar=1"> Magnitud 1.2 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-09 03:03:28 <br>Fecha y Hora : 2022-11-09 11:03:28<p> ubicado a 21.65 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03g.png',1.2],['60307032',L.latLng(31.564,-115.674),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307032&preliminar=1"> Magnitud 2.9 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-09 02:12:08 <br>Fecha y Hora : 2022-11-09 10:12:08<p> ubicado a 21.78 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i><br><a href="https://resnom.cicese.mx/eventsGif/60307032.gif"data-lightbox= Sismograma data-title="Series de tiempo generadas autom�ticamente">Imagen Sismograma </a>  <br><a href="https://resnom.cicese.mx/reportes/shakemaps/shake/60307032/intensity.jpg"data-lightbox= Mapa data-title="Mapa de intensidades generado autom&aacuteticamente">Mapa de Intensidades </a>   <i><p>','sis03f.png',2.9],['60307035',L.latLng(27.304,-111.54),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307035&preliminar=1"> Magnitud 3.5 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-09 01:40:36 <br>Fecha y Hora : 2022-11-09 09:40:36<p> ubicado a 71.99 km al este  del poblado de  Santa Rosalía, Mulege, Baja California Sur.</p><p><i>       <i><p>','sis03e.png',3.5],['60307034',L.latLng(31.562,-115.684),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307034&preliminar=1"> Magnitud 1.7 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-08 20:44:10 <br>Fecha y Hora : 2022-11-09 04:44:10<p> ubicado a 21.16 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03g.png',1.7],['60307033',L.latLng(31.569,-115.686),'<h1><a href="https://resnom.cicese.mx/sitio/sismo?s=60307033&preliminar=1"> Magnitud 1.9 <i><br></h1>Estado: Revisado-CICESE<br></a>Fecha y Hora local (UTC-8): 2022-11-08 19:00:46 <br>Fecha y Hora : 2022-11-09 03:00:46<p> ubicado a 21.8 km al noreste  del poblado de  Valle de la Trinidad, Ensenada, Baja California.</p><p><i>       <i><p>','sis03g.png',1.9]];
+var marker = [];
+var Mfallas = L.geoJson(fallas, {style: estilo}).addTo(map);
+var Mplacas = L.geoJson(placas, {style: estilo2}).addTo(map);
+var overlayMaps = { "Muestra fallas" : Mfallas, "Muestra placas" : Mplacas};
+L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+var popup = L.popup();
+L.control.scale().addTo(map);
+if(sismos[0][4] >= 0.5){
+L.control.mousePosition({position: 'topleft'}).addTo(map);
+}
+for (i = 0; i < sismos.length; i++){
+var Icon = L.icon({iconUrl: 'https://resnom.cicese.mx/sitio/img/markers/'+sismos[i][3]});
+position = (sismos[i][1]);
+console.log(position);
+console.log(Icon);
+if(sismos[i][4] >= 0.5){
+
+var  marker = L.marker((sismos[i][1]), {icon:Icon}).addTo(map);
+marker.bindPopup(sismos[i][2]);
+
+} else {
+		if (printStations) { 
+		var  marker = L.marker((sismos[i][1]), {icon:Icon}).addTo(map);
+		marker.bindPopup(sismos[i][2]);
+		console.log(marker);
+		}
+	}
+}
+</script>
+
+
+
+
+	
+        <script src="https://code.jquery.com/jquery-1.9.1.js" ></script>
+        <script src="https://resnom.cicese.mx/sitio/libs/js/lightbox.min.js"></script>
+ 
+    <script type="text/javascript" src="https://resnom.cicese.mx/sitio/ui/js/theme.js"></script>
+    <script type="text/javascript" src="https://resnom.cicese.mx/sitio/ui/js/bootstrap-tab.js"></script>
+
+
+    <header class="fixed-menu"></header>
+    <div class="layout_trigger image_bg_cont" style="background-color:#a9a9a9; background-image:url(https://resnom.cicese.mx/sitio/ui/img/bg_user.jpg); background-repeat:no-repeat;"></div>
+</body>
+</html>

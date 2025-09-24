@@ -1,0 +1,110 @@
+/*-------------------------------
+Css for:
+	1. basic html elements
+	2. page header
+	3. boxes
+	4. buttons
+	5. columns
+	6. dropcaps
+	7. icons
+	8. lists
+	9. image and video frames
+	10. shadows
+	11. slider
+	12. tables
+	13. tabs
+	14. accordion
+	15. contact page
+	16. widget container
+	17. page footer
+	18. blog
+	19. sidebar
+	20. page wrapper style2
+	21. menu (lavaLamp)
+	22. fancybox
+	23. invent gallery
+	24. paginator
+	25. color settings
+	26. demo panel
+ 
+-------------------------------*/
+/*-------------------------------
+	1. basic html elements
+-------------------------------*/
+
+/*-------------------------------
+	12. tables
+-------------------------------*/
+table {
+  width: 100%;
+  padding: 0px;
+  border-style: solid;
+  line-height: 20px;
+  text-align: center;
+  margin-bottom: 24px;
+  border: 1px #fff solid;
+  -webkit-border-vertical-spacing: 0px;
+  -webkit-border-horizontal-spacing: 0px;
+  box-shadow: 0px 0px 10px #d6d6d6;
+  border-collapse: collapse;
+  background: blue; }
+
+th {
+  font-weight: normal;
+  font-size: 15px;
+  padding: 10px 0 10px 0;
+  color: #fff;
+  background-color: #b6b6b6;
+  border-left: #ddd 1px inset; }
+
+th:first-child {
+  border-left: none; }
+
+tbody tr {
+  background-color: #f4f4f4; }
+
+tbody tr:nth-child(even) {
+  background-color: #eaeaea; }
+
+tbody tr:hover {
+  background-color: #e2e2e2; }
+
+td {
+  font-weight: lighter;
+  line-height: 20px;
+  color: #4e4e4e;
+  padding: 9px 0px 10px 0px;
+  border-left: #ddd 1px inset;
+  border-top: #ddd 1px inset; }
+
+tbody tr:first-child {
+  padding-top: 10px; }
+
+tr:last-child td {
+  border-bottom: none; }
+
+tbody tr td:first-child {
+  border-left: none; }
+
+tbody tr:first-child td {
+  border-top: none; }
+
+table.orange th {
+  background-color: #f7910c; }
+
+table.blue th {
+  background-color: #0061a0; }
+
+table.green th {
+  background-color: #38bd2a; }
+
+table.red th {
+  background-color: #f94141; }
+
+table.custom th {
+  background-color: #9e7238; }
+
+.table-border {
+  width: 100%;
+  height: auto;
+  background: blue; }
